@@ -1,5 +1,5 @@
 FROM alpine
-MAINTAINER David Personette <dperson@gmail.com>
+MAINTAINER Vinh. Ha Phuc <kiemsi.lv@gmail.com>
 
 # Install tor and privoxy
 RUN apk --no-cache --no-progress upgrade && \
@@ -55,10 +55,6 @@ RUN apk --no-cache --no-progress upgrade && \
 COPY torproxy.sh /usr/bin/
 
 EXPOSE 8118 9050 9051
-
-HEALTHCHECK --interval=60s --timeout=15s --start-period=20s \
-            CMD curl -sx localhost:8118 'https://check.torproject.org/' | \
-            grep -qm1 Congratulations
 
 VOLUME ["/etc/tor", "/var/lib/tor"]
 
